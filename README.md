@@ -1,4 +1,4 @@
-##AI-Powered Interview Assistant - Backend
+## AI-Powered Interview Assistant - Backend
 
 This is the **backend server** for the AI-Powered Interview Assistant.  
 It handles **AI interactions, resume uploads, question generation, answer evaluation**, and **hiring summary creation** for the frontend application.

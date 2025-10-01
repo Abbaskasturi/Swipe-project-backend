@@ -66,7 +66,7 @@ Respond ONLY in JSON:
 app.post("/api/generate-question", async (req, res) => {
   try {
     const { level } = req.body; 
-    const prompt = `Generate a ${level} full-stack (React/Node) interview question.
+    const prompt = `Generate a ${level} full-stack (React/Node) interview question must be able to answer within less time and question is must be two lines.
 Respond ONLY in JSON:
 {"question":"...","answer":"..."}`;
 

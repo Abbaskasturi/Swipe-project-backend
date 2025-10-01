@@ -101,7 +101,7 @@ Respond ONLY in JSON:
 app.post("/api/generate-summary", async (req, res) => {
   try {
     const { candidate } = req.body; 
-    const prompt = `Write a short hiring summary for this candidate:
+    const prompt = `Write a short hiring summary for this candidate based on their interview performance:
 ${JSON.stringify(candidate)}
 Respond ONLY in JSON:
 {"summary":"...", "finalScore": number}`;
@@ -109,8 +109,14 @@ Respond ONLY in JSON:
     const result = await queryGroq(prompt);
     res.json(JSON.parse(result));
   } catch (err) {
-    console.error("Summary error:", err);
-    res.status(500).json({ error: "Failed to generate summary" });
+    // This block provides detailed error logging for debugging
+    if (err instanceof Groq.APIError) {
+        console.error("Groq API Error:", err.status, err.error);
+        res.status(500).json({ error: `AI service error: ${err.error?.message || 'Failed to generate summary'}` });
+    } else {
+        console.error("Summary generation error:", err);
+        res.status(500).json({ error: "Failed to generate summary" });
+    }
   }
 });
 
